@@ -13,11 +13,23 @@ WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
 reps = 0
-checkmark_text =""
-
+timer = None
 CHECKMARK ="✓"
 
 # ---------------------------- TIMER RESET ------------------------------- # 
+def reset_timer() :
+    global timer
+    global reps
+    #Stop the timer
+    window.after_cancel(timer)
+    #timer text 00:00
+    canvas.itemconfig(timer_text, text="00:00")
+    #title_label = Timer
+    timer_label.config(text="Timer",fg=GREEN)
+    #Reset checkmarks
+    checkmarks.config(text="")
+    #reps
+    reps = 0
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 def start_timer():
@@ -29,6 +41,7 @@ def start_timer():
     short_break_sec = SHORT_BREAK_MIN * 60
     long_break_sec = LONG_BREAK_MIN * 60
 
+    checkmark_text = ""
 
     # 2nd/4th/6th -> short_break_sec
     if reps % 8 == 0:
@@ -50,7 +63,7 @@ def start_timer():
 
 def count_down(count):
     global reps
-    global checkmark_text
+
     #245 / 60 - 4 minutes
     #245 % 60 - x seconds
 
@@ -65,11 +78,16 @@ def count_down(count):
 
     canvas.itemconfig(timer_text,text=f"{count_min}:{count_sec}")
     if count > 0:
-        window.after(10, count_down, count - 1)
+        global timer
+        timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
-
-
+        #Writes the checkmarks for each work session
+        marks = ""
+        work_sessions = math.floor(reps/2)
+        for _ in range(work_sessions) :
+            marks += CHECKMARK
+        checkmarks.config(text=marks)
 
 # ---------------------------- UI SETUP ------------------------------- #
 #Window
@@ -95,7 +113,7 @@ timer_label.config(text="Timer",font=(FONT_NAME,50),bg=YELLOW,fg=GREEN)
 timer_label.grid(column=1,row=0)
 
 #Checkmark
-checkmarks = Label(text=checkmark_text + f"{reps}",padx=10,pady=10)
+checkmarks = Label(padx=10,pady=10)
 checkmarks.config(font=(FONT_NAME,35,"bold"),bg=YELLOW,fg=GREEN)
 checkmarks.grid(column=1,row=3)
 
@@ -107,7 +125,7 @@ start_button.grid(column=0,row=2)
 
 
 #Reset
-reset_button = Button(text="Reset",highlightthickness=0)
+reset_button = Button(text="Reset",highlightthickness=0,command=reset_timer)
 reset_button.grid(column=2,row=2)
 
 
