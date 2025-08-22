@@ -104,10 +104,9 @@ def count_down(count):
 # ---------------------------- UI SETUP ------------------------------- #
 #Window
 window = Tk()
-window.title("Pomodoro")
+window.title("Pomodoro Timer")
+window.iconphoto(True, PhotoImage(file=resource_path("tomato.png")))
 window.config(padx = 100,pady=50, bg=YELLOW)
-
-
 
 #Canvas Widget
 canvas = Canvas(width=200,height=224,bg = YELLOW,highlightthickness=0)
