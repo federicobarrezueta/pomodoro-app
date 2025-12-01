@@ -1,1 +1,2 @@
-This is an app that implements the Pomodoro timer for productivity.
+This is an app that implements the Pomodoro timer for productivity. Just run the dpkg command to install it!
+🍅 Hope it helps to boost your productivity! 🍅
