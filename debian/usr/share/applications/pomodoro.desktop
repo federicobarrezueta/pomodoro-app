@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Pomodoro Timer
+Comment=A simple Pomodoro productivity timer
+Exec=/usr/local/bin/pomodoro
+Icon=/opt/pomodoro-app/tomato.png
+Terminal=false
+Type=Application
+Categories=Utility;
+StartupNotify=true
+

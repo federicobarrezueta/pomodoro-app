@@ -1,0 +1,7 @@
+Package: pomodoro-app
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Maintainer: Your Name <email@example.com>
+Description: A Pomodoro productivity timer built in Python.
