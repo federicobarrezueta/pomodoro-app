@@ -4,6 +4,13 @@ import math
 import sys
 import os
 
+#!/usr/bin/env python3
+import sys
+from pathlib import Path
+
+script_path = Path("/opt/pomodoro-app/pomodoro.py")
+exec(open(script_path).read())
+
 
 # ---------------------------- CONSTANTS ------------------------------- #
 PINK = "#e2979c"
